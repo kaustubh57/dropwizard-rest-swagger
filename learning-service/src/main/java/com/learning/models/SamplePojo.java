@@ -1,4 +1,4 @@
-package com.learning.model;
+package com.learning.models;
 
 public class SamplePojo {
 

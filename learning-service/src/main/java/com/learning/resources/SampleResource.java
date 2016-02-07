@@ -1,6 +1,6 @@
 package com.learning.resources;
 
-import com.learning.model.SamplePojo;
+import com.learning.models.SamplePojo;
 import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
