@@ -2,6 +2,8 @@ package com.learning;
 
 import com.learning.config.*;
 
+import com.learning.resources.LogResource;
+import com.learning.resources.SampleResource;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -13,6 +15,8 @@ import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 import io.dropwizard.db.DataSourceFactory;
 import io.dropwizard.hibernate.HibernateBundle;
+import io.federecio.dropwizard.swagger.SwaggerBundle;
+import io.federecio.dropwizard.swagger.SwaggerBundleConfiguration;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,8 +32,15 @@ public class LearningService extends Application<LearningConfiguration> {
         new LearningService().run(args);
     }
 
+    private final SwaggerBundle<LearningConfiguration> swaggerBundle = new SwaggerBundle<LearningConfiguration>() {
+        @Override
+        public SwaggerBundleConfiguration getSwaggerBundleConfiguration(final LearningConfiguration configuration) {
+            return configuration.getSwaggerBundleConfiguration();
+        }
+    };
+
     private final HibernateBundle<LearningConfiguration> hibernateBundle = new HibernateBundle<LearningConfiguration>(
-            
+
             Void.class
         ) {
         @Override
@@ -47,6 +58,7 @@ public class LearningService extends Application<LearningConfiguration> {
     public void initialize(Bootstrap<LearningConfiguration> bootstrap) {
         bootstrap.addBundle(new AssetsBundle("/assets/app/", "/", "index.html"));
         bootstrap.addBundle(hibernateBundle);
+        bootstrap.addBundle(swaggerBundle);
         ObjectMapper mapper = bootstrap.getObjectMapper();
         mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
     }
@@ -55,8 +67,9 @@ public class LearningService extends Application<LearningConfiguration> {
     public void run(LearningConfiguration configuration,
                     Environment environment) throws Exception {
         environment.jersey().setUrlPattern("/learning/*");
-        environment.jersey().disable();
-        
-        
+        //environment.jersey().disable();
+        environment.jersey().register(new LogResource());
+        environment.jersey().register(new SampleResource());
     }
+
 }

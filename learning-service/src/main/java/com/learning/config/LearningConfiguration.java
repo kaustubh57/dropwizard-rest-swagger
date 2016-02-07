@@ -1,11 +1,16 @@
 package com.learning.config;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.federecio.dropwizard.swagger.SwaggerBundleConfiguration;
 import io.dropwizard.Configuration;
 import io.dropwizard.db.DataSourceFactory;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 public class LearningConfiguration extends Configuration {
 
     @NotNull
@@ -15,17 +20,9 @@ public class LearningConfiguration extends Configuration {
     @Valid
     @NotNull
     @JsonProperty
-    private DataSourceFactory database = new DataSourceFactory();
+    private DataSourceFactory dataSourceFactory = new DataSourceFactory();
 
-    public String getSampleProperty() {
-        return sampleProperty;
-    }
-
-    public DataSourceFactory getDataSourceFactory() {
-        return database;
-    }
-
-    public void setDataSourceFactory(DataSourceFactory database) {
-        this.database = database;
-    }
+    @NotNull
+    @JsonProperty("swagger")
+    private SwaggerBundleConfiguration swaggerBundleConfiguration;
 }

@@ -6,7 +6,7 @@
 *.iml
 *.ipr
 *.iws
-#/learning-service/learning.yml
+/learning-service/learning.yml
 *.log
 *.swp
 *~
