@@ -6,9 +6,10 @@
 *.iml
 *.ipr
 *.iws
+#/learning-service/learning.yml
 *.log
 *.swp
 *~
 logs
-node_modules
+node_modules*
 target
