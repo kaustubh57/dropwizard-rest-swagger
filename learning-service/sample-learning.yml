@@ -1,7 +1,7 @@
 sampleProperty: hello!
 
 # Database settings.
-database:
+dataSourceFactory:
   driverClass: org.apache.derby.jdbc.EmbeddedDriver
   url: jdbc:derby:/tmp/mydb;create=true
   user: admin
@@ -34,7 +34,7 @@ server:
 #  hardNofileLimit: 1000
   applicationConnectors:
     - type: http
-      port: 8080
+      port: 8787
 #    - type: https
 #      port: 8443
 #      keyStorePath: example.keystore
@@ -48,7 +48,7 @@ server:
 #      validateCerts: false
   adminConnectors:
     - type: http
-      port: 8081
+      port: 8788
 #    - type: https
 #      port: 8444
 #      keyStorePath: example.keystore
@@ -85,3 +85,18 @@ logging:
 
       # The timezone used to format dates. HINT: USE THE DEFAULT, UTC.
       timeZone: UTC
+
+swagger:
+  title: Learning Api
+  version: "0.1.0"
+  description: Move your app by learning APIs
+  resourcePackage: com.learning.resources
+
+# SSO
+shiro:
+  enabled: true
+  # use shiro's session handler
+  #dropwizard_session_handler: true
+
+contextParameters:
+  shiroConfigLocations: file:./src/main/resources/shiro.ini
