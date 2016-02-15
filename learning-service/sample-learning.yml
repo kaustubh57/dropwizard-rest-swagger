@@ -33,16 +33,16 @@ server:
 #  softNofileLimit: 1000
 #  hardNofileLimit: 1000
   applicationConnectors:
-    - type: http
-      port: 8787
-#    - type: https
-#      port: 8443
-#      keyStorePath: example.keystore
-#      keyStorePassword: example
-#      validateCerts: false
+#    - type: http
+#      port: 8787
+    - type: https
+      port: 8773
+      keyStorePath: file:<folder-path>/keystore.jks
+      keyStorePassword: changeme
+      validateCerts: false
 # this requires the npn-boot library on the JVM's boot classpath
 #    - type: spdy3
-#      port: 8445
+#      port: 8775
 #      keyStorePath: example.keystore
 #      keyStorePassword: example
 #      validateCerts: false
@@ -97,6 +97,8 @@ shiro:
   enabled: true
   # use shiro's session handler
   #dropwizard_session_handler: true
+  # URLs matching this pattern will be intercepted by the ShiroFilter. The default value is /*
+  #secured_url_pattern: /learning
 
 contextParameters:
   shiroConfigLocations: file:./src/main/resources/shiro.ini

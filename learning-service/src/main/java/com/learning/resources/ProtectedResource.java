@@ -19,6 +19,7 @@ public class ProtectedResource {
      * The SecurityContext's principal will be set by Shiro if its filter intercepted the call.
      */
     @GET
+    @Produces(MediaType.APPLICATION_JSON)
     @ApiOperation("Sample protected")
     public String showSecret(@Context SecurityContext context) {
         if (context.getUserPrincipal()!=null)

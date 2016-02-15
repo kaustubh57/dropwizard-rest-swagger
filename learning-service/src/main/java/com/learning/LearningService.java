@@ -9,6 +9,7 @@ import com.learning.resources.ProtectedResource;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.google.common.base.Optional;
+import com.learning.resources.ShiroLoginCheck;
 import io.dropwizard.Application;
 import io.dropwizard.assets.AssetsBundle;
 import io.dropwizard.setup.Bootstrap;
@@ -76,6 +77,7 @@ public class LearningService extends Application<LearningConfiguration> {
         environment.jersey().register(new LogResource());
         environment.jersey().register(new SampleResource());
         environment.jersey().register(new ProtectedResource());
+        environment.jersey().register(new ShiroLoginCheck());
     }
 
 }
