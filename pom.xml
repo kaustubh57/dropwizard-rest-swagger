@@ -20,11 +20,20 @@
     </modules>
 
     <properties>
-        <dropwizard.version>0.8.0</dropwizard.version>
+        <dropwizard.version>0.8.1</dropwizard.version>
         <hibernate.version>4.3.5.Final</hibernate.version>
         <jackson.version>2.5.1</jackson.version>
-        <powermock.version>1.6.1</powermock.version>
+        <powermock.version>1.6.2</powermock.version>
+        <shiro.version>1.2.4</shiro.version>
+        <jetty.version>9.2.9.v20150224</jetty.version>
     </properties>
+
+    <repositories>
+        <repository>
+            <id>artifactory</id>
+            <url>http://repo.maven.apache.org/maven2</url>
+        </repository>
+    </repositories>
 
     <!-- STOPPED HERE -->
     <dependencies>
@@ -71,8 +80,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.1</version>
                 <configuration>
-                    <source>1.7</source>
-                    <target>1.7</target>
+                    <source>1.8</source>
+                    <target>1.8</target>
                     <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
