@@ -1,6 +1,7 @@
 package com.learning.config;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.learning.redis.RedisConfiguration;
 import io.federecio.dropwizard.swagger.SwaggerBundleConfiguration;
 import io.dropwizard.Configuration;
 import io.dropwizard.db.DataSourceFactory;
@@ -36,4 +37,9 @@ public class LearningConfiguration extends Configuration {
     @Valid
     @JsonProperty("shiro")
     private ShiroConfiguration shiroConfiguration = new ShiroConfiguration();
+
+    @Valid
+    @NotNull
+    @JsonProperty("redis")
+    private final RedisConfiguration redisConfiguration = new RedisConfiguration();
 }
