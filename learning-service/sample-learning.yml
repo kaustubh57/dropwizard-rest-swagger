@@ -102,3 +102,9 @@ shiro:
 
 contextParameters:
   shiroConfigLocations: file:./src/main/resources/shiro.ini
+
+redis:
+  host: localhost
+  port: 6379
+  poolSize: 1000
+  prefix: learning.localhost

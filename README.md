@@ -37,9 +37,12 @@
     - Integrate dw-shiro-cas
         - https://github.com/javajack/dw-shiro-bundle
         - http://clearthehaze.com/2014/09/dropwizard-ssl/
-    - Create and import SSL certificate
+    - Create and import SSL certificate (/Library/Java/JavaVirtualMachines/)
         - keytool -genkey -alias selfsigned -keyalg RSA -keystore keystore.jks -keysize 2048
         - keytool -export -alias selfsigned -file selfsigned.crt -keystore keystore.jks
         - keytool -import -trustcacerts -alias selfsigned -file selfsigned.crt -keystore <path_to_java>/jre/lib/security/cacerts
+
+## Redis
+    - https://github.com/mrniko/redisson
 
 Project is created using - https://github.com/rayokota/generator-angular-dropwizard
