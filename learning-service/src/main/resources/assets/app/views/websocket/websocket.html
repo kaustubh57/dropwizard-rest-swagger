@@ -1,0 +1,29 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-8">
+            <h1>Welcome to websocket!</h1>
+            <p class="lead">This is your websocket - learning page</p>
+        </div>
+    </div>
+    <button onclick="sendMessage()">Send Message</button>
+    <div id="content"></div>
+
+    <script type="text/javascript">
+        var content = document.getElementById('content');
+        var socket = new WebSocket('ws://localhost:8787/learning/websocket');
+        socket.onopen = function () {
+            socket.send('hello from the client');
+        };
+
+        socket.onmessage = function (message) {
+            content.innerHTML += message.data +'<br />';
+        };
+
+        socket.onerror = function (error) {
+            console.log('WebSocket error: ' + error);
+        };
+        sendMessage = function() {
+            socket.send('button click >>> ' + new Date());
+        };
+    </script>
+</div>

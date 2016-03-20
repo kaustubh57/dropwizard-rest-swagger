@@ -1,0 +1,29 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-8">
+            <h1>Welcome to websocket adapter!</h1>
+            <p class="lead">This is your websocket adapter - learning page</p>
+        </div>
+    </div>
+    <button onclick="sendMessage()">Send Message</button>
+    <div id="content"></div>
+
+    <script type="text/javascript">
+        var content = document.getElementById('content');
+        var socket = new WebSocket('ws://localhost:8787/learning/websocket/adapter');
+        socket.onopen = function () {
+            socket.send('#ADAPTER hello from the client');
+        };
+
+        socket.onmessage = function (message) {
+            content.innerHTML += message.data +'<br />';
+        };
+
+        socket.onerror = function (error) {
+            console.log('#ADAPTER WebSocket error: ' + error);
+        };
+        sendMessage = function() {
+            socket.send('#ADAPTER button click >>> ' + new Date());
+        };
+    </script>
+</div>

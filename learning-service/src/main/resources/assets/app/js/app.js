@@ -5,8 +5,11 @@ angular.module('learning', ['ngResource', 'ngRoute', 'ui.bootstrap', 'ui.date'])
       .when('/', {
         templateUrl: 'views/home/home.html',
         controller: 'HomeController'})
-        .when('/error/', {
-            templateUrl : 'error.html'
-        })
+      .when('/websocket/', {
+        templateUrl: 'views/websocket/websocket.html'})
+      .when('/websocket/adapter', {
+        templateUrl: 'views/websocket/websocket-adapter.html'})
+      .when('/error/', {
+        templateUrl : 'error.html'})
       .otherwise({redirectTo: '/'});
   }]);
