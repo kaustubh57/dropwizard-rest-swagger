@@ -1,6 +1,7 @@
 package com.learning.websocket;
 
 import com.google.inject.Inject;
+import com.learning.config.LearningConfiguration;
 import org.eclipse.jetty.websocket.servlet.ServletUpgradeRequest;
 import org.eclipse.jetty.websocket.servlet.ServletUpgradeResponse;
 import org.eclipse.jetty.websocket.servlet.WebSocketCreator;
@@ -23,6 +24,9 @@ public class EventWebSocketServlet extends WebSocketServlet
     @Inject
     private Config redissonConfig;
 
+    @Inject
+    private LearningConfiguration configuration;
+
     @Override
     public void configure(WebSocketServletFactory factory)
     {
@@ -32,7 +36,7 @@ public class EventWebSocketServlet extends WebSocketServlet
 
             @Override
             public Object createWebSocket(final ServletUpgradeRequest request, final ServletUpgradeResponse response) {
-                return new EventWebSocket(cacheConnectionPool, redissonConfig);
+                return new EventWebSocket(cacheConnectionPool, redissonConfig, configuration);
             }
         });
     }

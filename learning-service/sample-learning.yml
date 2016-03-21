@@ -66,7 +66,7 @@ logging:
 
   # Logger-specific levels.
   loggers:
-    com.example: INFO
+    com.learning: INFO
     org.hibernate.SQL: ALL
 
   appenders:
