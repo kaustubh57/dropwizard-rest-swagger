@@ -12,7 +12,7 @@
         var content = document.getElementById('content');
         var socket = new WebSocket('ws://localhost:8787/learning/websocket');
         socket.onopen = function () {
-            socket.send('hello from the client');
+            socket.send('hello from the client >>> ' + getBrowserName());
         };
 
         socket.onmessage = function (message) {
@@ -20,10 +20,29 @@
         };
 
         socket.onerror = function (error) {
-            console.log('WebSocket error: ' + error);
+            console.log('WebSocket error: ' + getBrowserName()+ ' >>> ' + error);
         };
         sendMessage = function() {
-            socket.send('button click >>> ' + new Date());
+            socket.send('button click >>> ' + getBrowserName() + ' ### DATE >>> ' + new Date());
         };
+
+        getBrowserName = function() {
+            var browserAgent = navigator.userAgent;
+            var browserName  = navigator.appName;
+            // In Chrome, the true version is after "Chrome"
+            if ((browserAgent.indexOf("Chrome"))!=-1) {
+                browserName = "Chrome";
+            }
+            // In Safari, the true version is after "Safari" or after "Version"
+            else if ((browserAgent.indexOf("Safari"))!=-1) {
+                browserName = "Safari";
+            }
+            // In Firefox, the true version is after "Firefox"
+            else if ((browserAgent.indexOf("Firefox"))!=-1) {
+                browserName = "Firefox";
+            }
+
+            return browserName;
+        }
     </script>
 </div>

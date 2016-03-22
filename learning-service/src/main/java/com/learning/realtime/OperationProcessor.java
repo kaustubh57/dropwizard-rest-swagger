@@ -83,17 +83,12 @@ public class OperationProcessor {
                 Operation op = getNextOperationFromQueue();
                 //handleOperation(op);
                 updateEventLatestState(op);
-                setRevision();
                 addToRevisionLog(getEventRevisionLogKey(), op);
                 updateClients(op);
             }
         } catch (Exception e) {
             log.error("Could not process operation", e);
         }
-    }
-
-    private void setRevision() {
-        getEventRevisionLogKey();
     }
 
     private void updateClients(final Operation op) {
@@ -173,7 +168,6 @@ public class OperationProcessor {
         Jedis jedi = pool.getResource();
         String key = getEventLatestStateKey();
         HashMap<String, String> state = new HashMap<>();
-        state.put("message", message);
         state.put("revision", Long.toString(revision));
         jedi.hmset(key, state);
     }
