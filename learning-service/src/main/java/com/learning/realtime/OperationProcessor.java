@@ -20,8 +20,6 @@ import java.util.Map;
 public class OperationProcessor {
 
 
-    private String message = null;
-
     private Pool<Jedis> pool = null;
 
     private EventChannel dataChannel;
@@ -30,9 +28,8 @@ public class OperationProcessor {
 
     private LearningConfiguration configuration = null;
 
-    public OperationProcessor(final String message, final EventChannel dataChannel, final Pool<Jedis> pool,
+    public OperationProcessor(final EventChannel dataChannel, final Pool<Jedis> pool,
                               final LearningConfiguration configuration) {
-        this.message = message;
         this.dataChannel = dataChannel;
         this.pool = pool;
         this.configuration = configuration;
@@ -41,7 +38,7 @@ public class OperationProcessor {
     public void initLatestState() {
         if (null == getEventLatestState()) {
             Long revision = getLatestRevision();
-            setEventLatestState(revision, message);
+            setEventLatestState(revision);
         }
     }
 
@@ -164,7 +161,7 @@ public class OperationProcessor {
         }
     }
 
-    private void setEventLatestState(final Long revision, final String message) {
+    private void setEventLatestState(final Long revision) {
         Jedis jedi = pool.getResource();
         String key = getEventLatestStateKey();
         HashMap<String, String> state = new HashMap<>();
@@ -177,7 +174,7 @@ public class OperationProcessor {
         String key = getEventLatestStateKey();
         HashMap<String, String> state = new HashMap<>();
         Long revision = getLatestRevision();
-        revision = (revision != null ? revision : 0) + 1;
+        revision = revision + 1;
         state.put("revision", Long.toString(revision));
         jedi.hmset(key, state);
         op.setRevision(revision);
@@ -189,7 +186,7 @@ public class OperationProcessor {
         try {
             String revisionString = jedi.hget(getEventLatestStateKey(), "revision");
             if (Strings.isNullOrEmpty(revisionString)) {
-                revision = jedi.hlen(getEventRevisionLogKey());
+                revision = 0L;
             } else {
                 revision = Long.parseLong(revisionString);
             }
