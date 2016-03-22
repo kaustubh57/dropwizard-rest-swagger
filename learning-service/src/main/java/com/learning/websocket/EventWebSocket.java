@@ -85,7 +85,6 @@ public class EventWebSocket
         try {
             Operation operation = new Operation(OperationType.ADD_MESSAGE, message);
             OperationProcessor opProcessor = new OperationProcessor(dataChannel, cacheConnectionPool, configuration);
-            opProcessor.initLatestState();
             opProcessor.handleNewOperation(operation);
             RLock lock = redisson.getLock(lockManager.getLockName(100L));
             if (lockManager.tryLock(redisson, cacheConnectionPool)) {

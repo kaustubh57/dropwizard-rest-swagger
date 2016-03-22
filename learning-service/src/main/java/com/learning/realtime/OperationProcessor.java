@@ -11,7 +11,6 @@ import redis.clients.util.Pool;
 
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created by kaustubh on 3/21/16.
@@ -33,13 +32,6 @@ public class OperationProcessor {
         this.dataChannel = dataChannel;
         this.pool = pool;
         this.configuration = configuration;
-    }
-
-    public void initLatestState() {
-        if (null == getEventLatestState()) {
-            Long revision = getLatestRevision();
-            setEventLatestState(revision);
-        }
     }
 
     private enum OperationPrefix {
@@ -161,14 +153,6 @@ public class OperationProcessor {
         }
     }
 
-    private void setEventLatestState(final Long revision) {
-        Jedis jedi = pool.getResource();
-        String key = getEventLatestStateKey();
-        HashMap<String, String> state = new HashMap<>();
-        state.put("revision", Long.toString(revision));
-        jedi.hmset(key, state);
-    }
-
     private void updateEventLatestState(final Operation op) {
         Jedis jedi = pool.getResource();
         String key = getEventLatestStateKey();
@@ -197,23 +181,6 @@ public class OperationProcessor {
             pool.returnResource(jedi);
         }
         return revision;
-    }
-
-    private Map<String, Object> getEventLatestState() {
-        Jedis jedi = pool.getResource();
-        try {
-            String jsonFromRedis = jedi.hget(getEventLatestStateKey(), "event");
-            if (!Strings.isNullOrEmpty(jsonFromRedis)) {
-                return jsonUtil.toObjectMap(jsonFromRedis);
-            }
-        } catch (Exception e) {
-            log.error("Could not get latest event state.", e);
-            pool.returnBrokenResource(jedi);
-
-        } finally {
-            pool.returnResource(jedi);
-        }
-        return null;
     }
 
 }
