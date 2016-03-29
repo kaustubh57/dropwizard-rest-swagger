@@ -1,29 +1,27 @@
 package com.learning;
 
-import com.google.common.base.Strings;
-import com.google.inject.AbstractModule;
-import com.google.inject.Guice;
-import com.google.inject.Injector;
-import com.learning.config.*;
-
-import com.learning.redis.RedisBundle;
-import com.learning.redis.RedisConfiguration;
-import com.learning.resources.LogResource;
-import com.learning.resources.SampleResource;
-import com.learning.resources.ProtectedResource;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.google.common.base.Optional;
+import com.google.inject.AbstractModule;
+import com.google.inject.Guice;
+import com.google.inject.Injector;
+import com.learning.config.LearningConfiguration;
+import com.learning.redis.RedisBundle;
+import com.learning.redis.RedisConfiguration;
+import com.learning.resources.HTTPMethodResource;
+import com.learning.resources.LogResource;
+import com.learning.resources.ProtectedResource;
+import com.learning.resources.SampleResource;
 import com.learning.resources.ShiroLoginCheck;
 import com.learning.websocket.EventWebSocketAdapterServlet;
 import com.learning.websocket.EventWebSocketServlet;
 import io.dropwizard.Application;
 import io.dropwizard.assets.AssetsBundle;
-import io.dropwizard.setup.Bootstrap;
-import io.dropwizard.setup.Environment;
 import io.dropwizard.db.DataSourceFactory;
 import io.dropwizard.hibernate.HibernateBundle;
+import io.dropwizard.setup.Bootstrap;
+import io.dropwizard.setup.Environment;
 import io.federecio.dropwizard.swagger.SwaggerBundle;
 import io.federecio.dropwizard.swagger.SwaggerBundleConfiguration;
 import io.ifar.dropwizard.shiro.ShiroBundle;
@@ -122,6 +120,7 @@ public class LearningService extends Application<LearningConfiguration> {
         environment.jersey().register(injector.getInstance(SampleResource.class));
         environment.jersey().register(injector.getInstance(ProtectedResource.class));
         environment.jersey().register(injector.getInstance(ShiroLoginCheck.class));
+        environment.jersey().register(injector.getInstance(HTTPMethodResource.class));
     }
 
     private void registerWebSocketServlet(final Environment environment, Injector injector) {
