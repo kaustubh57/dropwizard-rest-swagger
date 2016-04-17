@@ -13,6 +13,10 @@
             it('should have a dummy test', function () {
                 expect(1+1).toBe(2);
             });
+
+            it('should have a failed dummy test', function () {
+                expect(1+1).toBe(3);
+            });
         });
     });
 })();
