@@ -4,7 +4,7 @@
     "description": "Description for learning",
     "dependencies": {},
     "devDependencies": {
-        "grunt": "~1.0.1",
+        "grunt": "~0.4.0",
         "grunt-autoprefixer": "~3.0.4",
         "grunt-bowercopy": "~1.2.4",
         "grunt-bower-install": "~1.6.0",
@@ -40,6 +40,9 @@
         "karma-ng-json2js-preprocessor": "^1.1.2",
         "karma-opera-launcher": "^0.3.0",
         "karma-safari-launcher": "^0.1.1",
+        "karma-firefox-launcher": "~0.1",
+        "karma-phantomjs-launcher": "1.0.0",
+        "phantomjs-prebuilt": "2.1.7",
         "karma-coverage": "~0.5.5",
         "gulp": "~3.9.1"
     },

@@ -11,8 +11,10 @@ module.exports = function(config) {
             'karma-jasmine',
             'karma-coverage',
             'karma-chrome-launcher',
+            'karma-phantomjs-launcher',
             'karma-ng-json2js-preprocessor',
-            'karma-ng-html2js-preprocessor'
+            'karma-ng-html2js-preprocessor',
+            'karma-junit-reporter'
         ],
 
         // list of files / patterns to exclude
@@ -36,7 +38,7 @@ module.exports = function(config) {
         // - Safari (only Mac)
         // - PhantomJS
         // - IE (only Windows)
-        browsers: ['Chrome'],
+        browsers: ['PhantomJS'],
 
 
         // Continuous Integration mode
@@ -45,13 +47,17 @@ module.exports = function(config) {
 
         // karma-coverage reports
         preprocessors: {
-            'learning-service/src/main/resources/assets/app/js/app.js': ['coverage'],
-            'learning-service/src/main/resources/app/js/**/*.js': ['coverage'],
+            'learning-service/src/main/resources/assets/app/js/**/*.js': ['coverage'],
             'learning-service/src/main/resources/assets/app/views/**/*.html': ['ng-html2js']
         },
-        reporters: ['progress', 'coverage'],
+        reporters: ['junit', 'progress', 'coverage'],
+        // the default configuration
+        junitReporter: {
+            outputDir: 'learning-service/target/karma/'
+        },
+
         coverageReporter: {
-            type : 'html',
+            type : 'lcov', //clover, cobertura, html, in-memory, json, json-summary, lcov, lcovonly, none, teamcity, text, text-lcov, text-summary
             dir : 'learning-service/target/karma/'
         },
 
