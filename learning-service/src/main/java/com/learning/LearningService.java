@@ -116,7 +116,7 @@ public class LearningService extends Application<LearningConfiguration> {
     private void registerResources(final Environment environment, Injector injector) {
         environment.jersey().setUrlPattern("/learning/*");
         //environment.jersey().disable();
-        environment.jersey().register(injector.getInstance(LogResource.class));
+        environment.jersey().regis ter(injector.getInstance(LogResource.class));
         environment.jersey().register(injector.getInstance(SampleResource.class));
         environment.jersey().register(injector.getInstance(ProtectedResource.class));
         environment.jersey().register(injector.getInstance(ShiroLoginCheck.class));
