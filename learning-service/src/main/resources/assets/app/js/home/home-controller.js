@@ -1,3 +1,5 @@
-angular.module('learning')
-  .controller('HomeController', ['$scope', function ($scope) {
-  }]);
+(function () {
+    angular.module('learning')
+        .controller('HomeController', ['$scope', function ($scope) {
+        }]);
+})();
