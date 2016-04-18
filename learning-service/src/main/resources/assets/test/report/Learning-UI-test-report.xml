@@ -1,10 +1,14 @@
 <?xml version="1.0"?>
-<testsuite name="PhantomJS 2.1.1 (Mac OS X 0.0.0)" package="" timestamp="2016-04-18T17:16:29" id="0" hostname="Kaustubhs-MacBook-Pro-2.local" tests="2" errors="0" failures="0" time="0.002">
+<testsuite name="PhantomJS 2.1.1 (Mac OS X 0.0.0)" package="" timestamp="2016-04-18T17:18:31" id="0" hostname="Kaustubhs-MacBook-Pro-2.local" tests="2" errors="0" failures="1" time="0.002">
   <properties>
     <property name="browser.fullName" value="Mozilla/5.0 (Macintosh; Intel Mac OS X) AppleWebKit/538.1 (KHTML, like Gecko) PhantomJS/2.1.1 Safari/538.1"/>
   </properties>
-  <testcase name="app test app test should have a dummy test" time="0.002" classname="app test"/>
-  <testcase name="app test app test should have a failed dummy test" time="0" classname="app test"/>
+  <testcase name="app test app test should have a dummy test" time="0.001" classname="app test"/>
+  <testcase name="app test app test should have a failed dummy test" time="0.001" classname="app test">
+    <failure type="">Expected 2 to be 1.
+/Users/kkibm/development/github/dropwizard-rest-swagger-shiro-cas/learning-service/src/main/resources/assets/test/spec/app-test.js:18:33
+</failure>
+  </testcase>
   <system-out>
     <![CDATA[
 ]]>
