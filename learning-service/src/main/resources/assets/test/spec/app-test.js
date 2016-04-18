@@ -15,7 +15,7 @@
             });
 
             it('should have a failed dummy test', function () {
-                expect(1+1).toBe(3);
+                expect(1+1).toBeGreaterThan(1);
             });
         });
     });

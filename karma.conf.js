@@ -53,7 +53,9 @@ module.exports = function(config) {
         reporters: ['junit', 'progress', 'coverage'],
         // the default configuration
         junitReporter: {
-            outputDir: 'learning-service/target/karma/'
+            outputDir: 'learning-service/src/main/resources/assets/test/report/',
+            outputFile: 'Learning-UI-test-report.xml',
+            useBrowserName: false
         },
 
         coverageReporter: {
