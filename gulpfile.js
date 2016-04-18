@@ -29,3 +29,8 @@ gulp.task('karma-test', function(done) {
         done();
     });
 });
+
+gulp.task('copy-report', function(){
+    gulp.src('learning-service/src/main/resources/assets/test/report/Learning-UI-test-report.xml')
+        .pipe(gulp.dest('learning-service/src/main/resources/assets/test/report/', {overwrite: true}));
+});
